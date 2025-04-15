@@ -11,9 +11,8 @@ import threading
 import time
 
 
-from obx import Object
-from obr import Fleet, launch
-from .   import debug
+from .. import Fleet, Object, launch
+from .  import debug
 
 
 DEBUG = True

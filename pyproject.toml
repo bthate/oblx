@@ -23,9 +23,9 @@ classifiers = [
 ]
 
 [project.urls]
-"home" = "https://pypi.org/project/obr"
-"bugs" = "https://github.com/bthate/obr/issues"
-"source" = "https://github.com/bthate/obr"
+"home" = "https://pypi.org/project/oblx"
+"bugs" = "https://github.com/bthate/oblx/issues"
+"source" = "https://github.com/bthate/oblx"
 
 [tool.setuptools]
 packages = [
