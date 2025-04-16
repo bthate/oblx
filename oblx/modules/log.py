@@ -7,8 +7,10 @@
 import time
 
 
-from .. import Object, find, fntime, ident, store, write
-from .  import elapsed
+from ..disk   import write
+from ..object import Object
+from ..find   import find, fntime
+from .        import elapsed
 
 
 class Log(Object):
@@ -30,5 +32,5 @@ def log(event):
         return
     obj = Log()
     obj.txt = event.rest
-    write(obj, store(ident(obj)))
+    write(obj)
     event.done()

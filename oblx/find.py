@@ -8,8 +8,8 @@ import os
 import time
 
 
-from .disk   import Cache, fqn, read
-from .object import Object, items, update
+from .disk   import Cache, read
+from .object import Object, fqn, items, update
 from .path   import long, skel, store
 
 

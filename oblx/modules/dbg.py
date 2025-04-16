@@ -7,7 +7,8 @@
 import time
 
 
-from .. import Fleet, line
+from ..error import line
+from ..fleet import Fleet
 
 
 def dbg(event):

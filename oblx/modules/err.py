@@ -4,7 +4,7 @@
 "errors"
 
 
-from .. import Errors, line
+from ..error import Errors, line
 
 
 def err(event):

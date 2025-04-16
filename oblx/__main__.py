@@ -11,12 +11,13 @@ import time
 import _thread
 
 
-from . import Client, Errors, Event, Workdir
-from . import dumps, full, pidname
-
-
+from .client  import Client
+from .error   import Errors, full
+from .event   import Event
+from .json    import dumps
 from .modules import Commands, Main, command, inits, md5sum
 from .modules import mods, modules, parse, scan, settable
+from .path    import Workdir, pidname
 
 
 class CLI(Client):

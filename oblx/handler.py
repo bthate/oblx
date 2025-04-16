@@ -9,7 +9,7 @@ import threading
 import _thread
 
 
-from .errors import later
+from .error  import later
 from .thread import launch, name
 
 

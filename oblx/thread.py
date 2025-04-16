@@ -10,7 +10,7 @@ import time
 import _thread
 
 
-from .errors import later
+from .error import later
 
 
 STARTTIME = time.time()

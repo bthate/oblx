@@ -14,10 +14,16 @@ import threading
 import time
 
 
-from .. import Object, ident, keys, last, store, write
-from .. import Client, Event, Fleet, launch
-from .  import debug as ldebug
-from .  import Default, Main, command, edit, fmt
+from ..client import Client
+from ..disk   import write
+from ..event  import Event
+from ..find   import last
+from ..fleet  import Fleet
+from ..object import Object, keys
+from ..path   import ident, path
+from ..thread import launch
+from .        import debug as ldebug
+from .        import Default, Main, command, edit, fmt
 
 
 IGNORE  = ["PING", "PONG", "PRIVMSG"]
@@ -606,7 +612,7 @@ def cfg(event):
                    )
     else:
         edit(config, event.sets)
-        write(config, fnm or store(ident(config)))
+        write(config, fnm or path(config))
         event.done()
 
 
