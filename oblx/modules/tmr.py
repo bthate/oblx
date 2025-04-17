@@ -9,10 +9,9 @@ import re
 import time
 
 
-from ..disk   import write
-from ..find   import find
-from ..fleet  import Fleet
-from ..thread import  Timer, launch
+from ..store  import find, path, write
+from ..client import Fleet
+from ..thread import Timer, launch
 from .        import debug, elapsed
 
 
@@ -228,6 +227,6 @@ def tmr(event):
     timer.orig = event.orig
     timer.time = target
     timer.txt = txt
-    write(timer)
+    write(timer, store(ident(timer)))
     launch(timer.start)
     event.reply("ok " +  elapsed(diff))

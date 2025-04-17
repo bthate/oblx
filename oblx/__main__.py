@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # This file is placed in the Public Domain.
 
 
@@ -6,18 +7,20 @@
 
 import os
 import pathlib
+import signal
 import sys
+import threading
 import time
 import _thread
 
 
 from .client  import Client
-from .error   import Errors, full
-from .event   import Event
+from .handler import Event
 from .json    import dumps
 from .modules import Commands, Main, command, inits, md5sum
 from .modules import mods, modules, parse, scan, settable
-from .path    import Workdir, pidname
+from .store   import Workdir, pidname
+from .thread  import Errors, full, launch
 
 
 class CLI(Client):
@@ -226,7 +229,8 @@ def console():
         banner()
     for _mod, thr in inits(Main.init):
         if "w" in Main.opts:
-            thr.join()
+            if thr.is_alive():
+                thr.join(120.0)
     csl = Console()
     csl.start()
     forever()
@@ -263,8 +267,6 @@ def service():
     Commands.add(cmd)
     inits(Main.init or "irc,rss")
     forever()
-
-
 
 "runtime"
 

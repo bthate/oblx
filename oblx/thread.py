@@ -7,10 +7,8 @@
 import queue
 import threading
 import time
+import traceback
 import _thread
-
-
-from .error import later
 
 
 STARTTIME = time.time()
@@ -44,9 +42,34 @@ class Thread(threading.Thread):
         return self.result
 
 
-class Timer:
+def launch(func, *args, **kwargs) -> Thread:
+    nme = kwargs.get("name")
+    if not nme:
+        nme = name(func)
+    thread = Thread(func, nme, *args, **kwargs)
+    thread.start()
+    return thread
 
-    """ timer """
+
+def name(obj) -> str:
+    typ = type(obj)
+    if '__builtins__' in dir(typ):
+        return obj.__name__
+    if '__self__' in dir(obj):
+        return f'{obj.__self__.__class__.__name__}.{obj.__name__}'
+    if '__class__' in dir(obj) and '__name__' in dir(obj):
+        return f'{obj.__class__.__name__}.{obj.__name__}'
+    if '__class__' in dir(obj):
+        return f"{obj.__class__.__module__}.{obj.__class__.__name__}"
+    if '__name__' in dir(obj):
+        return f'{obj.__class__.__name__}.{obj.__name__}'
+    return None
+
+
+"timers"
+
+
+class Timer:
 
     def __init__(self, sleep, func, *args, thrname=None, **kwargs):
         self.args   = args
@@ -84,36 +107,65 @@ class Repeater(Timer):
         super().run()
 
 
-def launch(func, *args, **kwargs) -> Thread:
-    nme = kwargs.get("name")
-    if not nme:
-        nme = name(func)
-    thread = Thread(func, nme, *args, **kwargs)
-    thread.start()
-    return thread
+"errors"
 
 
-def name(obj) -> str:
-    typ = type(obj)
-    if '__builtins__' in dir(typ):
-        return obj.__name__
-    if '__self__' in dir(obj):
-        return f'{obj.__self__.__class__.__name__}.{obj.__name__}'
-    if '__class__' in dir(obj) and '__name__' in dir(obj):
-        return f'{obj.__class__.__name__}.{obj.__name__}'
-    if '__class__' in dir(obj):
-        return f"{obj.__class__.__module__}.{obj.__class__.__name__}"
-    if '__name__' in dir(obj):
-        return f'{obj.__class__.__name__}.{obj.__name__}'
-    return None
+class Errors:
+
+    name = __file__.rsplit("/", maxsplit=2)[-2]
+    errors = []
+
+
+def full(exc) -> str:
+    return traceback.format_exception(type(exc),exc,exc.__traceback__)
+
+
+def later(exc) -> None:
+    Errors.errors.append(exc)
+
+
+def line(exc):
+    exctype, excvalue, trb = type(exc), exc, exc.__traceback__
+    trace = traceback.extract_tb(trb)
+    result = ""
+    for i in trace:
+        fname = i[0]
+        if fname.endswith(".py"):
+            fname = fname[:-3]
+        linenr = i[1]
+        plugfile = fname.split("/")
+        mod = []
+        for i in plugfile[::-1]:
+            mod.append(i)
+            if Errors.name in i or "bin" in i:
+                break
+        ownname = '.'.join(mod[::-1])
+        if ownname.endswith("__"):
+            continue
+        if ownname.startswith("<"):
+            continue
+        result += f"{ownname}:{linenr} "
+    del trace
+    res = f"{exctype} {result[:-1]} {excvalue}"
+    if "__notes__" in dir(exc):
+        for note in exc.__notes__:
+            res += f" {note}"
+    return res
+
+
+"interface"
 
 
 def __dir__():
     return (
         'STARTTIME',
+        'Errors',
         'Repeater',
         'Thread',
         'Timer',
+        'full',
+        'later',
         'launch',
+        'line',
         'name'
     )

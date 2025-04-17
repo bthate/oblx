@@ -8,11 +8,11 @@ import datetime
 import time
 
 
-from ..object import Object, construct, keys
-from ..event  import Event
-from ..fleet  import Fleet
-from ..thread import  Repeater
-from .        import debug, elapsed
+from ..object  import Object, construct, keys
+from ..client  import Fleet
+from ..handler import Event
+from ..thread  import Repeater
+from .         import debug, elapsed
 
 
 DAY = 24*60*60

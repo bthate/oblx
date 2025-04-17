@@ -16,10 +16,9 @@ import types
 import _thread
 
 
-from ..fleet  import Fleet
 from ..object import Object, items, keys
-from ..error  import later
-from ..thread import launch
+from ..client import Fleet
+from ..thread import later, launch
 
 
 CHECKSUM = "7b3aa07511d3d882d07a62bd8c3b6239"
@@ -98,7 +97,7 @@ def debug(*args):
 
 def inits(names) -> [types.ModuleType]:
     modz = []
-    for name in spl(names):
+    for name in sorted(spl(names)):
         try:
             mod = load(name)
             if not mod:
