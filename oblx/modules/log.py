@@ -7,9 +7,9 @@
 import time
 
 
+from ..client import elapsed
 from ..object import Object
 from ..store  import find, fntime,  write
-from .        import elapsed
 
 
 class Log(Object):

@@ -9,10 +9,10 @@ import re
 import time
 
 
+from ..client import Fleet, elapsed
 from ..store  import find, path, write
-from ..client import Fleet
 from ..thread import Timer, launch
-from .        import debug, elapsed
+from .        import debug
 
 
 def init():
