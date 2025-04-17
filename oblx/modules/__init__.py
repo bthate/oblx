@@ -289,3 +289,11 @@ def table():
     if names:
         NAMES.update(names)
     return NAMES
+
+
+"interface"
+
+
+def __dir__():
+    return modules()
+ 

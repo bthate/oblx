@@ -80,6 +80,7 @@ class Fleet:
 
 "utilities"
 
+
 def elapsed(seconds, short=True) -> str:
     txt = ""
     nsec = float(seconds)
