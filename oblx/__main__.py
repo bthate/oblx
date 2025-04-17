@@ -1,4 +1,3 @@
-#!/usr/bin/env python3
 # This file is placed in the Public Domain.
 
 
@@ -49,6 +48,13 @@ class Console(CLI):
         return evt
 
 
+"signals"
+
+
+def handler(signum, frame):
+    _thread.interrupt_main()
+
+
 "output"
 
 
@@ -73,13 +79,6 @@ def enable():
 def disable():
     global output
     output = nil
-
-
-"signals"
-
-
-def handler(signum, frame):
-    _thread.interrupt_main()
 
 
 "utilities"
@@ -268,6 +267,7 @@ def service():
     inits(Main.init or "irc,rss")
     forever()
 
+
 "runtime"
 
 
@@ -293,25 +293,6 @@ def wrap(func):
             termios.tcsetattr(sys.stdin.fileno(), termios.TCSADRAIN, old)
 
 
-def main():
-    if check("a"):
-        Main.ignore = "udp"
-        Main.init   = ",".join(modules())
-        for mod in mods():
-            mod.DEBUG = False
-    if check("v"):
-        setattr(Main.opts, "v", True)
-        enable()
-    if check("c"):
-        wrap(console)
-    elif check("d"):
-        background()
-    elif check("s"):
-        wrapped(service)
-    else:
-        wrapped(control)
-
-
 "data"
 
 
@@ -330,6 +311,25 @@ WantedBy=multi-user.target"""
 
 
 "main"
+
+
+def main():
+    if check("a"):
+        Main.ignore = "udp"
+        Main.init   = ",".join(modules())
+        for mod in mods():
+            mod.DEBUG = False
+    if check("v"):
+        setattr(Main.opts, "v", True)
+        enable()
+    if check("c"):
+        wrap(console)
+    elif check("d"):
+        background()
+    elif check("s"):
+        wrapped(service)
+    else:
+        wrapped(control)
 
 
 if __name__ == "__main__":

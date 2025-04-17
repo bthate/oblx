@@ -60,3 +60,18 @@ def update(obj, data) -> None:
 
 def values(obj) -> []:
     return obj.__dict__.values()
+
+
+"interface"
+
+
+def __dir__():
+    return (
+        'Object',
+        'construct',
+        'fqn',
+        'items',
+        'ketys',
+        'update',
+        'values'
+    )
