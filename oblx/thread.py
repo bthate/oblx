@@ -38,6 +38,10 @@ class Thread(threading.Thread):
             _thread.interrupt_main()
 
     def join(self, timeout=None):
+        while 1:
+            if not self.is_alive():
+                break
+            time.sleep(0.1)
         super().join(timeout)
         return self.result
 

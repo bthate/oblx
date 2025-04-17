@@ -16,8 +16,8 @@ import types
 import _thread
 
 
-from ..object import Object, items, keys
 from ..client import Fleet
+from ..object import Object, items, keys
 from ..thread import later, launch
 
 
@@ -27,7 +27,7 @@ MD5      = {}
 NAMES    = {}
 
 
-loadlock = threading.RLock()
+lock = threading.RLock()
 
 
 path = os.path.dirname(__file__)
@@ -230,7 +230,7 @@ def gettbl(name):
 
 
 def load(name) -> types.ModuleType:
-    with loadlock:
+    with lock:
         if name in Main.ignore:
             return
         module = None
@@ -388,6 +388,3 @@ def fmt(obj, args=None, skip=None, plain=False) -> str:
             txt += f'{key}={value} '
     return txt.strip()
 
-
-def __dir__():
-    return modules()

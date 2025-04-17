@@ -13,7 +13,7 @@ import time
 
 
 from .json   import dump, load
-from .object import Object, fqn, update
+from .object import Object, fqn, items, update
 
 
 lock = threading.RLock()

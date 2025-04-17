@@ -16,10 +16,13 @@ import _thread
 from .client  import Client
 from .handler import Event
 from .json    import dumps
-from .modules import Commands, Main, command, inits, md5sum
-from .modules import mods, modules, parse, scan, settable
+from .modules import Commands, Main, command, inits, parse, scan, settable
+from .modules import mods, md5sum, modules
 from .store   import Workdir, pidname
 from .thread  import Errors, full, launch
+
+
+"clients"
 
 
 class CLI(Client):

@@ -21,6 +21,11 @@ OBLX
 **DESCRIPTION**
 
 
+``OBLX`` is a python3 IRC, it can connect to IRC, fetch and display RSS
+feeds, take todo notes, keep a shopping list and log text. You can
+also copy/paste the service file and run it under systemd for 24/7
+presence in a IRC channel.
+
 ``OBLX`` has all you need to program a unix cli program, such as disk
 perisistence for configuration files, event handler to handle the
 client/server connection, deferred exception handling to not crash
@@ -31,10 +36,6 @@ provides an "clean namespace" Object class that only has dunder
 methods, so the namespace is not cluttered with method names. This
 makes storing and reading to/from json possible.
 
-``OBLX`` is a demo bot, it can connect to IRC, fetch and display RSS
-feeds, take todo notes, keep a shopping list and log text. You can
-also copy/paste the service file and run it under systemd for 24/7
-presence in a IRC channel.
 
 ``OBLX`` is Public Domain.
 
@@ -100,7 +101,7 @@ here is a list of available commands
 | ``cfg`` - irc configuration
 | ``cmd`` - commands
 | ``dpl`` - sets display items
-| ``err`` - show errors
+| ``err`` - errors
 | ``exp`` - export opml (stdout)
 | ``imp`` - import opml
 | ``log`` - log text
@@ -113,9 +114,10 @@ here is a list of available commands
 | ``rss`` - add a feed
 | ``syn`` - sync rss feeds
 | ``tdo`` - add todo item
-| ``thr`` - show running threads
-| ``upt`` - show uptime
-|
+| ``thr`` - running threads
+| ``upt`` - uptime
+| ``ver`` - version
+
 
 **CONFIGURATION**
 

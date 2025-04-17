@@ -22,6 +22,9 @@ classifiers = [
     'Topic :: Software Development :: Libraries :: Python Modules'
 ]
 
+[project.scripts]
+"oblx" = "oblx.__main__:main"
+
 [project.urls]
 "home" = "https://pypi.org/project/oblx"
 "bugs" = "https://github.com/bthate/oblx/issues"
