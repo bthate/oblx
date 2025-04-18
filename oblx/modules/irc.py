@@ -44,6 +44,9 @@ def init():
     return irc
 
 
+"config"
+
+
 class Config(Default):
 
     channel = f'#{Main.name}'
@@ -512,7 +515,7 @@ class IRC(Client, Output):
 "callbacks"
 
 
-def cb_auth(bot, evt):
+def cb_auth(evt):
     bot = Fleet.get(evt.orig)
     bot.docommand(f'AUTHENTICATE {bot.cfg.password}')
 
@@ -544,7 +547,7 @@ def cb_h904(evt):
     bot.events.authed.set()
 
 
-def cb_kill(bot, evt):
+def cb_kill(evt):
     pass
 
 def cb_log(evt):

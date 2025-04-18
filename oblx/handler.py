@@ -13,9 +13,6 @@ import _thread
 from .thread import later, launch, name
 
 
-lock = threading.RLock()
-
-
 class Handler:
 
     def __init__(self):

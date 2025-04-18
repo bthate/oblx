@@ -232,7 +232,7 @@ def console():
     for _mod, thr in inits(Main.init):
         if "w" in Main.opts:
             if thr.is_alive():
-                thr.join(120.0)
+                thr.join(30.0)
     csl = Console()
     csl.start()
     forever()
@@ -318,7 +318,6 @@ WantedBy=multi-user.target"""
 
 def main():
     if check("a"):
-        Main.ignore = "udp"
         Main.init   = ",".join(modules())
         for mod in mods():
             mod.DEBUG = False

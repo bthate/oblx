@@ -43,7 +43,7 @@ class Default(Object):
 class Main(Default):
 
     debug   = False
-    ignore  = 'dbg,udp,wsd'
+    ignore  = ''
     init    = ""
     md5     = False
     name    = __name__.split(".", maxsplit=1)[0]
