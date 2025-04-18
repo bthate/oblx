@@ -118,7 +118,7 @@ def __dir__():
         'fmt',
         'fqn',
         'items',
-        'ketys',
+        'keys',
         'update',
         'values'
     )

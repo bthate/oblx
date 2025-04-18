@@ -79,6 +79,9 @@ class Commands:
         return func
 
 
+"callbacks"
+
+
 def command(evt) -> None:
     parse(evt)
     func = Commands.get(evt.cmd)
@@ -86,6 +89,9 @@ def command(evt) -> None:
         func(evt)
         Fleet.display(evt)
     evt.ready()
+
+
+"utilities"
 
 
 def debug(*args):
