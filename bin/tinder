@@ -17,12 +17,13 @@ import _thread
 sys.path.insert(0, os.getcwd())
 
 
-from oblx.client  import Client, elapsed, spl
+from oblx.client  import Client
 from oblx.handler import Event
 from oblx.modules import Main, command, modules, parse, settable
 from oblx.object  import Object, keys
 from oblx.store   import Workdir, skel
 from oblx.thread  import STARTTIME, Errors, full, launch
+from oblx.utils   import elapsed, spl
 
 
 Main.debug  = True

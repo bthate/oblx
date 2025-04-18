@@ -90,6 +90,7 @@ def disable():
 def banner():
     tme = time.ctime(time.time()).replace("  ", " ")
     output(f"{Main.name.upper()} since {tme}")
+    output("loaded " + ",".join(sorted(modules())))
 
 
 def check(txt):

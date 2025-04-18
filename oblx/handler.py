@@ -13,6 +13,9 @@ import _thread
 from .thread import later, launch, name
 
 
+lock = threading.RLock()
+
+
 class Handler:
 
     def __init__(self):
@@ -22,15 +25,16 @@ class Handler:
         self.stopped = threading.Event()
 
     def callback(self, evt) -> None:
-        func = self.cbs.get(evt.type, None)
-        if not func:
-            evt.ready()
-            return
-        if evt.txt:
-            cmd = evt.txt.split(maxsplit=1)[0]
-        else:
-            cmd = name(func)
-        evt._thr = launch(func, evt, name=cmd)
+        with lock:
+            func = self.cbs.get(evt.type, None)
+            if not func:
+                evt.ready()
+                return
+            if evt.txt:
+                cmd = evt.txt.split(maxsplit=1)[0]
+            else:
+                cmd = name(func)
+            evt._thr = launch(func, evt, name=cmd)
 
     def loop(self) -> None:
         while not self.stopped.is_set():
