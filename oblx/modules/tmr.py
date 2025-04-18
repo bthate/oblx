@@ -16,6 +16,14 @@ from ..utils  import elapsed
 from .        import debug
 
 
+class NoDate(Exception):
+
+    pass
+
+
+"init"
+
+
 def init():
     for fnm, obj in find("timer"):
         if "time" not in dir(obj):
@@ -28,11 +36,6 @@ def init():
         else:
             obj.__deleted__ = True
             write(obj, fnm)
-
-
-class NoDate(Exception):
-
-    pass
 
 
 "utilities"
@@ -228,6 +231,6 @@ def tmr(event):
     timer.orig = event.orig
     timer.time = target
     timer.txt = txt
-    write(timer, store(ident(timer)))
+    write(timer, path(timer))
     launch(timer.start)
     event.reply("ok " +  elapsed(diff))

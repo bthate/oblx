@@ -36,6 +36,9 @@ def debug(txt):
     ldebug(txt)
 
 
+"init"
+
+
 def init():
     irc = IRC()
     irc.start()

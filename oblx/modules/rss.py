@@ -26,6 +26,9 @@ from ..thread import Repeater, launch
 from ..utils  import elapsed, spl
 
 
+"sefines"
+
+
 DEBUG = False
 
 
@@ -34,10 +37,16 @@ importlock = _thread.allocate_lock()
 skipped    = []
 
 
+"init"
+
+
 def init():
     fetcher = Fetcher()
     fetcher.start()
     return fetcher
+
+
+"classes"
 
 
 class Feed(Object):
