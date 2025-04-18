@@ -16,9 +16,10 @@ import types
 import _thread
 
 
-from ..client import Fleet, spl
+from ..client import Fleet
 from ..object import Object, items, keys
 from ..thread import later, launch
+from ..utils  import spl
 
 
 CHECKSUM = "7b3aa07511d3d882d07a62bd8c3b6239"
